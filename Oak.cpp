@@ -4,12 +4,17 @@
 Oak::Oak()
 {
 	Root = NULL;
+	TestBit = true;  // if true print out test clauses
 }
 
 
 Oak::~Oak()
 {
 	clear();
+	if (TestBit)
+	{
+		cout << "passed here test section : " << 1 << endl;
+	}
 }
 
 /*
@@ -20,6 +25,10 @@ Oak::~Oak()
 Node * Oak::getRootNode()
 {
 	return Root;
+	if (TestBit)
+	{
+		cout << "passed here test section : " << 2 << endl;
+	}
 }
 
 /*
@@ -34,6 +43,10 @@ bool Oak::add(int data)
 	{
 		if (data == Root->getData())  // if value exists return false
 		{
+			if (TestBit)
+			{
+				cout << "passed here test section : " << 3 << endl;
+			}
 			return false;
 		}
 		if (data < Root->getData())
@@ -45,6 +58,11 @@ bool Oak::add(int data)
 			else
 			{
 				Root->setLeftChild(new Node(data));
+				if (TestBit)
+				{
+					cout << "passed here test section : " << 4 << endl;
+				}
+				AddCount++;
 				return true;
 			}
 		}
@@ -57,6 +75,11 @@ bool Oak::add(int data)
 			else
 			{
 				Root->setRightChild(new Node(data));
+				if (TestBit)
+				{
+					cout << "passed here test section : " << 5 << endl;
+				}
+				AddCount++;
 				return true;
 			}
 		}
@@ -64,6 +87,11 @@ bool Oak::add(int data)
 	else
 	{
 		Root = new Node(data);
+		if (TestBit)
+		{
+			cout << "passed here test section : " << 6 << endl;
+		}
+		AddCount++;
 		return true;
 	}
 }
@@ -75,6 +103,10 @@ bool  Oak::AddAssist(int data, Node* AddIt)
 {
 	if (data == AddIt->getData())
 	{
+		if (TestBit)
+		{
+			cout << "passed here test section : " << 7 << endl;
+		}
 		return false;
 	}
 	if (data < AddIt->getData())
@@ -86,6 +118,11 @@ bool  Oak::AddAssist(int data, Node* AddIt)
 		else
 		{
 			AddIt->setLeftChild(new Node(data));
+			if (TestBit)
+			{
+				cout << "passed here test section : " << 8 << endl;
+			}
+			AddCount++;
 			return true;
 		}
 	}
@@ -98,6 +135,11 @@ bool  Oak::AddAssist(int data, Node* AddIt)
 		else
 		{
 			AddIt->setRightChild(new Node(data));
+			if (TestBit)
+			{
+				cout << "passed here test section : " << 9 << endl;
+			}
+			AddCount++;
 			return true;
 		}
 	}
@@ -123,6 +165,10 @@ bool Oak::remove(int data)
 	}
 	else // if empty
 	{
+		if (TestBit)
+		{
+			cout << "passed here test section : " << 10 << endl;
+		}
 		return false;
 	}
 }
@@ -142,20 +188,37 @@ bool  Oak::RemoveFinder(int data, Node* RemoveIt, Node* RemoveItsParent)
 		//-simply delete the node
 		if (RemoveIt->getLeftChild() == NULL && RemoveIt->getRightChild() == NULL) // it is a leaf : Case 1
 		{
-			delete RemoveIt;
 			if (RemoveItsParent->getData() == RemoveIt->getData()) // it is the root
 			{
+				delete RemoveIt;
+				DeleteCount++;
 				Root = NULL;
+				if (TestBit)
+				{
+					cout << "passed here test section : " << 11 << endl;
+				}
 				return true;
 			}
 			if (RemoveItsParent->getLeftChild()->getData() == RemoveIt->getData()) // it is the left branch/child
 			{
+				delete RemoveIt;
+				DeleteCount++;
 				RemoveItsParent->setLeftChild(NULL);
+				if (TestBit)
+				{
+					cout << "passed here test section : " << 12 << endl;
+				}
 				return true;
 			}
 			if (RemoveItsParent->getRightChild()->getData() == RemoveIt->getData()) // it is the left branch/child
 			{
+				delete RemoveIt;
+				DeleteCount++;
 				RemoveItsParent->setRightChild(NULL);
+				if (TestBit)
+				{
+					cout << "passed here test section : " << 13 << endl;
+				}
 				return true;
 			}
 		}
@@ -185,6 +248,11 @@ bool  Oak::RemoveFinder(int data, Node* RemoveIt, Node* RemoveItsParent)
 					TmpPred->setLeftChild(RemoveIt->getLeftChild());
 					TmpPred->setRightChild(RemoveIt->getRightChild());
 					delete RemoveIt;
+					DeleteCount++;
+					if (TestBit)
+					{
+						cout << "passed here test section : " << 14 << endl;
+					}
 					return true;
 				}
 				else  // Case 3 otherwise
@@ -194,6 +262,7 @@ bool  Oak::RemoveFinder(int data, Node* RemoveIt, Node* RemoveItsParent)
 					TmpPred->setLeftChild(RemoveIt->getLeftChild());
 					TmpPred->setRightChild(RemoveIt->getRightChild());
 					delete RemoveIt;
+					DeleteCount++;
 					return true;
 				}
 			}
@@ -206,6 +275,11 @@ bool  Oak::RemoveFinder(int data, Node* RemoveIt, Node* RemoveItsParent)
 					TmpPred->setLeftChild(RemoveIt->getLeftChild());
 					TmpPred->setRightChild(RemoveIt->getRightChild());
 					delete RemoveIt;
+					DeleteCount++;
+					if (TestBit)
+					{
+						cout << "passed here test section : " << 15 << endl;
+					}
 					return true;
 				}
 				else  // Case 3 otherwise
@@ -215,6 +289,11 @@ bool  Oak::RemoveFinder(int data, Node* RemoveIt, Node* RemoveItsParent)
 					TmpPred->setLeftChild(RemoveIt->getLeftChild());
 					TmpPred->setRightChild(RemoveIt->getRightChild());
 					delete RemoveIt;
+					DeleteCount++;
+					if (TestBit)
+					{
+						cout << "passed here test section : " << 16 << endl;
+					}
 					return true;
 				}
 			}
@@ -227,6 +306,11 @@ bool  Oak::RemoveFinder(int data, Node* RemoveIt, Node* RemoveItsParent)
 					TmpPred->setLeftChild(RemoveIt->getLeftChild());
 					TmpPred->setRightChild(RemoveIt->getRightChild());
 					delete RemoveIt;
+					DeleteCount++;
+					if (TestBit)
+					{
+						cout << "passed here test section : " << 17 << endl;
+					}
 					return true;
 				}
 				else  // Case 3 otherwise
@@ -236,6 +320,11 @@ bool  Oak::RemoveFinder(int data, Node* RemoveIt, Node* RemoveItsParent)
 					TmpPred->setLeftChild(RemoveIt->getLeftChild());
 					TmpPred->setRightChild(RemoveIt->getRightChild());
 					delete RemoveIt;
+					DeleteCount++;
+					if (TestBit)
+					{
+						cout << "passed here test section : " << 18 << endl;
+					}
 					return true;
 				}
 			}
@@ -251,6 +340,11 @@ bool  Oak::RemoveFinder(int data, Node* RemoveIt, Node* RemoveItsParent)
 				Root = RemoveIt->getLeftChild();
 				Root->setRightChild(RemoveIt->getRightChild());
 				delete RemoveIt;
+				DeleteCount++;
+				if (TestBit)
+				{
+					cout << "passed here test section : " << 19 << endl;
+				}
 				return true;
 			}
 			if (RemoveItsParent->getLeftChild()->getData() == RemoveIt->getData()) // it is the left branch/child
@@ -258,6 +352,11 @@ bool  Oak::RemoveFinder(int data, Node* RemoveIt, Node* RemoveItsParent)
 				RemoveItsParent->setLeftChild(RemoveIt->getLeftChild());
 				RemoveItsParent->getLeftChild()->setRightChild(RemoveIt->getRightChild());
 				delete RemoveIt;
+				DeleteCount++;
+				if (TestBit)
+				{
+					cout << "passed here test section : " << 20 << endl;
+				}
 				return true;
 			}
 			if (RemoveItsParent->getRightChild()->getData() == RemoveIt->getData()) // it is the left branch/child
@@ -265,6 +364,11 @@ bool  Oak::RemoveFinder(int data, Node* RemoveIt, Node* RemoveItsParent)
 				RemoveItsParent->setRightChild(RemoveIt->getLeftChild());
 				RemoveItsParent->getRightChild()->setRightChild(RemoveIt->getRightChild());
 				delete RemoveIt;
+				DeleteCount++;
+				if (TestBit)
+				{
+					cout << "passed here test section : " << 21 << endl;
+				}
 				return true;
 			}
 		}
@@ -277,18 +381,32 @@ bool  Oak::RemoveFinder(int data, Node* RemoveIt, Node* RemoveItsParent)
 			{
 				Root = RemoveIt->getRightChild();
 				delete RemoveIt;
+				DeleteCount++;
+				if (TestBit)
+				{
+					cout << "passed here test section : " << 22 << endl;
+				}
 				return true;
 			}
 			if (RemoveItsParent->getLeftChild()->getData() == RemoveIt->getData()) // it is the left branch/child
 			{
 				RemoveItsParent->setLeftChild(RemoveIt->getRightChild());
 				delete RemoveIt;
+				DeleteCount++;
+				if (TestBit)
+				{
+					cout << "passed here test section : " << 23 << endl;
+				}
 				return true;
 			}
 			if (RemoveItsParent->getRightChild()->getData() == RemoveIt->getData()) // it is the left branch/child
 			{
 				RemoveItsParent->setRightChild(RemoveIt->getLeftChild());
 				delete RemoveIt;
+				if (TestBit)
+				{
+					cout << "passed here test section : " << 24 << endl;
+				}
 				return true;
 			}
 		}
@@ -304,6 +422,10 @@ bool  Oak::RemoveFinder(int data, Node* RemoveIt, Node* RemoveItsParent)
 			}
 			else
 			{
+				if (TestBit)
+				{
+					cout << "passed here test section : " << 25 << endl;
+				}
 				return false;
 			}
 		}
@@ -315,6 +437,10 @@ bool  Oak::RemoveFinder(int data, Node* RemoveIt, Node* RemoveItsParent)
 			}
 			else
 			{
+				if (TestBit)
+				{
+					cout << "passed here test section : " << 26 << endl;
+				}
 				return false;
 			}
 		}
@@ -335,6 +461,7 @@ void Oak::clear()
 		if (Root->getRightChild() != NULL)
 			WildFire(Root->getRightChild());
 		delete Root;
+		DeleteCount++;
 		Root == NULL;
 	}
 }
@@ -348,5 +475,10 @@ void Oak::WildFire(Node* BurnIt)
 		WildFire(BurnIt->getLeftChild());
 	if (BurnIt->getRightChild() != NULL)
 		WildFire(BurnIt->getRightChild());
+	if (TestBit)
+	{
+		cout << "passed here test section : " << 26 << endl;
+	}
 	delete BurnIt;
+	DeleteCount++;
 }
