@@ -119,6 +119,7 @@ bool Oak::remove(int data)
 		//Case 3: The Inorder Predecessor with a Left Child
 		//Case 4: The Predecessor is the Left Child
 		//Case 5: The Missing Predecessor
+		RemoveFinder(data, Root, Root);
 	}
 	else // if empty
 	{
