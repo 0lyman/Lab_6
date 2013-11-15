@@ -295,7 +295,7 @@ bool  Oak::RemoveFinder(int data, Node* RemoveIt, Node* RemoveItsParent)
 	}
 	else //not found
 	{
-		if (RemoveIt->getLeftChild != NULL)
+		if (RemoveIt->getLeftChild() != NULL)
 		{
 			if (RemoveIt->getData() > data)  // if desireed data is less than current location go left in tree
 			{
@@ -306,7 +306,7 @@ bool  Oak::RemoveFinder(int data, Node* RemoveIt, Node* RemoveItsParent)
 				return false;
 			}
 		}
-		if (RemoveIt->getRightChild != NULL)
+		if (RemoveIt->getRightChild() != NULL)
 		{
 			if (RemoveIt->getData() > data) // if desireed data is greater than current location go right in tree
 			{
